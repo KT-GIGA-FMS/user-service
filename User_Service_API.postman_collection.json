@@ -1,0 +1,286 @@
+{
+	"info": {
+		"_postman_id": "kt-giga-fms-user-service",
+		"name": "KT Giga FMS - User Service API",
+		"description": "사용자 관리 서비스 API 테스트 컬렉션",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "사용자 검색 (대시보드)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/users/search?searchKeyword=김사원&status=ACTIVE&page=0&size=20&sortBy=createdAt&sortDirection=DESC",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"search"
+					],
+					"query": [
+						{
+							"key": "searchKeyword",
+							"value": "김사원",
+							"description": "이름, 사용자ID 또는 부서로 검색"
+						},
+						{
+							"key": "status",
+							"value": "ACTIVE",
+							"description": "전체 상태"
+						},
+						{
+							"key": "page",
+							"value": "0",
+							"description": "페이지 번호"
+						},
+						{
+							"key": "size",
+							"value": "20",
+							"description": "페이지 크기"
+						},
+						{
+							"key": "sortBy",
+							"value": "createdAt",
+							"description": "정렬 기준"
+						},
+						{
+							"key": "sortDirection",
+							"value": "DESC",
+							"description": "정렬 방향"
+						}
+					]
+				},
+				"description": "사용자 관리 대시보드의 메인 검색 API"
+			},
+			"response": []
+		},
+		{
+			"name": "사용자 통계 조회",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/users/statistics",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"statistics"
+					]
+				},
+				"description": "대시보드 하단의 통계 카드 데이터 조회"
+			},
+			"response": []
+		},
+		{
+			"name": "사용자 생성",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"userId\": \"u_004\",\n  \"name\": \"최사원\",\n  \"email\": \"choi.sawon@company.com\",\n  \"phone\": \"010-1234-5678\",\n  \"department\": \"인사팀\",\n  \"role\": \"주임\",\n  \"driverLicense\": \"2종보통\",\n  \"vehicleType\": \"개인\",\n  \"status\": \"ACTIVE\",\n  \"permissions\": [\"USER_READ\", \"USER_WRITE\"]\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/users",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"users"
+					]
+				},
+				"description": "새로운 사용자 등록"
+			},
+			"response": []
+		},
+		{
+			"name": "사용자 상세 조회",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/users/1",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"1"
+					]
+				},
+				"description": "특정 사용자의 상세 정보 조회"
+			},
+			"response": []
+		},
+		{
+			"name": "사용자 수정",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"김사원(수정)\",\n  \"department\": \"개발팀\",\n  \"role\": \"대리\",\n  \"status\": \"ACTIVE\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/users/1",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"1"
+					]
+				},
+				"description": "사용자 정보 수정"
+			},
+			"response": []
+		},
+		{
+			"name": "사용자 삭제",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/users/1",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"1"
+					]
+				},
+				"description": "사용자 삭제"
+			},
+			"response": []
+		},
+		{
+			"name": "일괄 수정",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"userIds\": [1, 2, 3],\n  \"status\": \"ACTIVE\",\n  \"department\": \"개발팀\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/users/batch",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"batch"
+					]
+				},
+				"description": "다수 사용자 일괄 수정"
+			},
+			"response": []
+		},
+		{
+			"name": "사용자 권한 조회",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/users/1/permissions",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"1",
+						"permissions"
+					]
+				},
+				"description": "사용자 권한 정보 조회"
+			},
+			"response": []
+		},
+		{
+			"name": "헬스 체크",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/users/health",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"health"
+					]
+				},
+				"description": "서비스 상태 확인"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8081",
+			"type": "string"
+		}
+	]
+}
+
