@@ -1,5 +1,6 @@
 package com.kt_giga_fms.user.dto;
 
+import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
 @Builder
 public class BatchUpdateRequest {
     
+    @NotEmpty(message = "사용자 ID 목록은 필수입니다")
     private List<Long> userIds;
     private String status;
     private String department;
